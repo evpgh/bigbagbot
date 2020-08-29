@@ -11,8 +11,4 @@ class User < Sequel::Model
   #   super
   #   author.decrease_post_count
   # end
-
-  def bag
-  	# bought = transactions.select{}
-  end
 end

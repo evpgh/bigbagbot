@@ -14,11 +14,8 @@ db.create_table :users do
 	primary_key :id
 	String :first_name
 	String :last_name
+	String :fb_id
 end
-db.run <<-SQL
-ALTER TABLE users
-ALTER COLUMN id TYPE bigint
-SQL
 
 db.drop_table :transactions if db.table_exists?(:transactions)
 db.create_table :transactions do
@@ -30,10 +27,6 @@ db.create_table :transactions do
 	foreign_key :user_id
 	foreign_key :asset_id
 end
-db.run <<-SQL
-ALTER TABLE transactions
-ALTER COLUMN user_id TYPE bigint
-SQL
 
 db.drop_table :bags if db.table_exists?(:bags)
 db.create_table :bags do
@@ -43,10 +36,6 @@ db.create_table :bags do
 	Float :quantity, default: 0
 	Float :avg_price, default: 0
 end
-db.run <<-SQL
-ALTER TABLE bags
-ALTER COLUMN user_id TYPE bigint
-SQL
 
 db.drop_table :assets if db.table_exists?(:assets)
 db.create_table :assets do

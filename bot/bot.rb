@@ -32,14 +32,14 @@ Rubotnik.route :message do
     quick_replies: [['Yes', 'CONFIRM'], ['No', 'CANCEL']]
   }
 
-  bind 'delete me' do
-    user = User.where(fb_id: get_user_info[:id]).first
-    return unless user
+  # bind 'delete me' do
+  #   user = User.where(fb_id: get_user_info[:id]).first
+  #   return unless user
 
-    Bag.where(user_id: user.id).delete
-    Transaction.where(user_id: user.id).delete
-    user.delete
-  end
+  #   Bag.where(user_id: user.id).delete
+  #   Transaction.where(user_id: user.id).delete
+  #   user.delete
+  # end
 end
 
   # bind 'what', 'my', 'name', all: true, reply_with:{

@@ -31,6 +31,13 @@ Rubotnik.route :message do
     text: parse_sell_transaction,
     quick_replies: [['Yes', 'CONFIRM'], ['No', 'CANCEL']]
   }
+
+  bind 'delete me', to: :parse_buy_transaction do
+    user = User.where(fb_id: get_user_info[:id]).first
+    Bag.where(user_id: user.id).delete_all
+    Transaction.where(user_id: user.id).delete_all
+    user.delete
+  end
 end
 
   # bind 'what', 'my', 'name', all: true, reply_with:{
@@ -83,6 +90,7 @@ end
 Rubotnik.route :postback do
   # postback from "Get Started" button
   bind 'START' do
+    message.typing_on
     say "🤖 Hello there!"
     say "👔 I'm your crypto 💰 accounting assistant."
     say "🤓 I don't expose you to any risk by asking for access to your exchanges."
@@ -90,6 +98,7 @@ Rubotnik.route :postback do
     say "➕ Add to your bags by messaging me something like 'I bought 5 BTC for 10000 $'"
     say "➖ I know it's not your thing but if you decided to sell just message me something like 'I sold 2 BTC for 20000 $'"
     say "ℹ️ Check out your bags with 'How big are my bags?'"
+    message.typing_off    
   end
 end
 

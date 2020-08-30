@@ -38,7 +38,7 @@ module Commands
 	  transaction.user_id = User.find_or_create(fb_id: get_user_info[:id]).id
 	  transaction.save
 	  message.typing_off
-		"So you acquired #{transaction.quantity} #{transaction.asset.label} for #{transaction.quantity*transaction.price.round(2)}$?"
+		"So you acquired #{transaction.quantity} #{transaction.asset.label} for #{transaction.quantity*transaction.price.round}$?"
 	end
 
 	def confirm

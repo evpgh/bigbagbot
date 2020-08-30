@@ -34,7 +34,7 @@ module Commands
 	  	Cryptocompare::Price.find(asset, currency)[asset.label][currency.label]
 	  end
  
-	  transaction.user = User.where(fb_id: get_user_info[:id]).first
+	  transaction.user_id = User.where(fb_id: get_user_info[:id]).first.id
 	  transaction.save
 	  message.typing_off
 		"So you sold #{transaction.quantity} #{transaction.asset.label} for #{transaction.quantity*transaction.price.round(2)}?"

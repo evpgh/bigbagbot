@@ -6,7 +6,7 @@ require 'logger'
 require 'dotenv'
 require 'byebug'
 env = Dotenv.load('.env')
-DB = Sequel.connect("postgres://#{env['PG_USER']}:#{env['PG_PASS']}@#{env['PG_HOST']}:#{env['PG_PORT']}/#{env['PG_DB_NAME']}", max_connections: 10)
+DB = Sequel.connect(env['DATABASE_URL'], max_connections: 10)
 DB.loggers << Logger.new($stdout)
 Dir["./bot/models/*.rb","./bot/commands/*.rb"].each {|file| require file }
 require_relative './bot/bot.rb'

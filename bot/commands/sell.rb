@@ -20,7 +20,7 @@ module Commands
 	  end
 	  transaction = Transaction.new
 	  transaction.quantity = matches[2].to_f
-	  asset = Asset.where(label: matches[3]).first.id
+	  asset = Asset.where(label: matches[3]).first
 	  currency = Currency.where(label: matches[6]).first&.id || Currency.where(label: 'USD').first.id
 	  transaction.asset_id = asset.id
 	  transaction.action = 'buy'

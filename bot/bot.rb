@@ -90,6 +90,7 @@ Rubotnik.route :postback do
     say "➕ Add to your bags by messaging me something like 'I bought 5 BTC for 10000 $'"
     say "➖ I know it's not your thing but if you decided to sell just message me something like 'I sold 2 BTC for 20000 $'"
     say "ℹ️ Check out your bags with 'How big are my bags?'"
+    User.create(first_name: get_user_info[:first_name], last_name: get_user_info[:last_name], fb_id: get_user_info[:id])
   end
 end
 

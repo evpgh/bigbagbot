@@ -35,7 +35,7 @@ module Commands
 	  	Cryptocompare::Price.find(asset, currency)[asset.label][currency.label]
 	  end
  
-	  transaction.user_id = get_user_info[:id]
+	  transaction.user_id = get_user_info[:id].to_i
 	  transaction.save
 	  message.typing_off
 		"So you acquired #{transaction.quantity} #{transaction.asset.label} for #{transaction.quantity*transaction.price.round(2)}?"

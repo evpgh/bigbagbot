@@ -34,6 +34,8 @@ Rubotnik.route :message do
 
   bind 'delete me', to: :parse_buy_transaction do
     user = User.where(fb_id: get_user_info[:id]).first
+    return unless user
+
     Bag.where(user_id: user.id).delete
     Transaction.where(user_id: user.id).delete
     user.delete

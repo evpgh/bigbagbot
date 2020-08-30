@@ -10,9 +10,9 @@ Rubotnik.subscribe(ENV['ACCESS_TOKEN'])
 # Set welcome screen, "get started" button and a menu (all optional)
 # Edit profile.rb before uncommenting the following lines:
 
-# Rubotnik.set_profile(
-#   Profile::START_BUTTON, Profile::START_GREETING, Profile::SIMPLE_MENU
-# )
+Rubotnik.set_profile(
+  Profile::START_BUTTON, Profile::START_GREETING
+)
 
 # Generates a location prompt for quick_replies
 # LOCATION_PROMPT = UI::QuickReplies.location
@@ -20,13 +20,17 @@ Rubotnik.subscribe(ENV['ACCESS_TOKEN'])
 ####################### HANDLE INCOMING MESSAGES ##############################
 
 Rubotnik.route :message do
-  bind 'buy', 'bought', 'acquired', 'received', 'added', to: :parse_buy_transaction, reply_with: {
-     text: parse_buy_transaction,
-     quick_replies: [['Yes', 'CONFIRM'], ['No', 'CANCEL']]
-   }
- end
-Rubotnik.route :message do
   bind 'how', 'big', 'bags', all: true, to: :get_all_bags
+
+  bind 'buy', 'bought', 'acquired', 'received', 'added', to: :parse_buy_transaction, reply_with: {
+    text: parse_buy_transaction,
+    quick_replies: [['Yes', 'CONFIRM'], ['No', 'CANCEL']]
+  }
+
+  bind 'sell', 'sold', 'lost', 'removed', 'given', to: :parse_buy_transaction, reply_with: {
+    text: parse_sell_transaction,
+    quick_replies: [['Yes', 'CONFIRM'], ['No', 'CANCEL']]
+  }
 end
 
   # bind 'what', 'my', 'name', all: true, reply_with:{
@@ -78,9 +82,15 @@ end
 
 Rubotnik.route :postback do
   # postback from "Get Started" button
-  # bind 'START' do
-  #   say "Welcome!"
-  # end
+  bind 'START' do
+    say "Hello there! 🤖 I'm your crypto accounting assistant. 👔"
+    say "I don't expose you to any risk by asking for access to your exchanges 🤓"
+    say "Just tell me 💬 when you buy or sell an assset and I'll calculate your bags' value automatically 💰"
+    say "Example commands:"
+    say "Add to your bags ℹ️ 'I bought 5 BTC for 10000 $'"
+    say "Remove from your bag ℹ️ 'I sold 2 BTC for 20000 $'"
+    say "Check out your bags ℹ️ 'How big are my bags?'"
+  end
 end
 
 ####################### HANDLE OTHER REQUESTS (NON-FB) #########################

@@ -1,20 +1,20 @@
-# module Profile
+module Profile
 #   # Configure profile for your bot (Start Button, Greeting, Menu)
 
-#   START_BUTTON = {
-#     get_started: {
-#       payload: 'START'
-#     }
-#   }
+  START_BUTTON = {
+    get_started: {
+      payload: 'START'
+    }
+  }
 
-#   START_GREETING = {
-#     greeting: [
-#       {
-#         locale: 'default',
-#         text: "Hello and welcome, {{user_first_name}}! Say 'hi!'"
-#       }
-#     ]
-#   }
+  START_GREETING = {
+    greeting: [
+      {
+        locale: 'default',
+        text: "Hello and welcome, {{user_first_name}}! I can give you up to date information about the value of your crypto portfolio. I do not access your exchanges, so there's literaly no risk."
+      }
+    ]
+  }
 
 #   SIMPLE_MENU = {
 #     persistent_menu: [
@@ -51,4 +51,4 @@
 #       }
 #     ]
 #   }
-# end
+end

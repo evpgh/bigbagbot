@@ -6,7 +6,7 @@ require 'logger'
 
 DB = Sequel.sqlite('./db/dev.db')
 DB.loggers << Logger.new($stdout)
-# Dir["./bot/models/*.rb","./bot/commands/*.rb"].each {|file| require file }
+Dir["./bot/models/*.rb","./bot/commands/*.rb"].each {|file| require file }
 require_relative './bot/bot.rb'
 
 map('/webhook') do

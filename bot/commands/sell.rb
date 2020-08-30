@@ -1,21 +1,20 @@
 require 'byebug'
-require 'cryptocompare'
 
 module Commands
-	def parse_buy_transaction
+	def parse_sell_transaction
 		case message.quick_reply
 		when 'CONFIRM' then confirm
 		when 'CANCEL' then cancel
 		else
-		  parse_buy
+		  parse_sell
 		end
 	end
 
-	def parse_buy
+	def parse_sell
 		message.typing_on
-	  parse_buy_regex = /^.*(buy|bought)\s(\d+\.?\d*)\s(\w+)(?:\s.*(?:(at|for)\s(\d+)\s?(bucks|USD|usd|dollars|\$)?))/i
-	  matches = parse_buy_regex.match(message.text)
-	  unless parse_buy_regex.match?(message.text)
+	  parse_sell_transaction = /^.*(sell|sold)\s(\d+\.?\d*)\s(\w+)(?:\s.*(?:(at|for)\s(\d+)\s?(bucks|USD|usd|dollars|\$)?))/i
+	  matches = parse_sell_transaction.match(message.text)
+	  unless parse_sell_transaction.match?(message.text)
 	  	message.typing_off
 	  	return
 	  end
@@ -38,13 +37,13 @@ module Commands
 	  transaction.user_id = get_user_info[:id]
 	  transaction.save
 	  message.typing_off
-		"So you acquired #{transaction.quantity} #{transaction.asset.label} for #{transaction.quantity*transaction.price.round(2)}?"
+		"So you sold #{transaction.quantity} #{transaction.asset.label} for #{transaction.quantity*transaction.price.round(2)}?"
 	end
 
 	def confirm
 		message.typing_on
 		Rubotnik.logger.info "Confirmated transaction:#{message.inspect}"
-		say "Nice. It's a good investment."
+		say "Nice. It's a good price."
 		message.typing_off
 		stop_thread
 	end

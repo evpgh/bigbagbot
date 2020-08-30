@@ -2,7 +2,7 @@ require 'byebug'
 
 module Commands
 	def get_all_bags
-		user = User.where(id: get_user_info[:id]).first
+		user = User.where(id: get_user_info[:id].to_i).first
 		if user.nil?
 			say "Your bags are empty. Have you bought some crypto recently?" 
 			return

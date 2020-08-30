@@ -7,7 +7,7 @@ require 'logger'
 config = File.absolute_path(File.join(File.expand_path(__FILE__), '..', '..', '.env'))
 env = Dotenv.load(config)
 
-db = Sequel.connect(env['DATABASE_URL'], max_connections: 10)
+db = Sequel.connect(env['DATABASE_URL'] || ENV['DATABASE_URL'], max_connections: 10)
 
 db.drop_table :users
 db.create_table :users do

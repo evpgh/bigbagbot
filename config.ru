@@ -6,7 +6,7 @@ require 'logger'
 require 'dotenv'
 require 'byebug'
 env = Dotenv.load('.env')
-DB = Sequel.connect(env['DATABASE_URL'], max_connections: 10)
+DB = Sequel.connect(env['DATABASE_URL'] || ENV['DATABASE_URL'], max_connections: 10)
 DB.loggers << Logger.new($stdout)
 Dir["./bot/models/*.rb","./bot/commands/*.rb"].each {|file| require file }
 require_relative './bot/bot.rb'

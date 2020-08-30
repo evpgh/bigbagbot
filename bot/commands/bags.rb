@@ -20,8 +20,6 @@ module Commands
 			value = (bag.quantity * get_price(bag.asset.label,'USD')).round(2)
 			say "💰 #{value}$"
 
-			pie_chart.data bag.asset.label, value
-
 			growth = (get_price(bag.asset.label,'USD')/bag.avg_price * 100 - 100).round(2)
 			if growth > 0
 				say "📈 +#{growth}%"

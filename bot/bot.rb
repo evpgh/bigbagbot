@@ -83,13 +83,12 @@ end
 Rubotnik.route :postback do
   # postback from "Get Started" button
   bind 'START' do
-    say "Hello there! 🤖 I'm your crypto accounting assistant. 👔"
+    say "Hello there! 🤖 \n I'm your crypto accounting assistant. 👔"
     say "I don't expose you to any risk by asking for access to your exchanges 🤓"
-    say "Just tell me 💬 when you buy or sell an assset and I'll calculate your bags' value automatically 💰"
-    say "Example commands:"
-    say "Add to your bags ℹ️ 'I bought 5 BTC for 10000 $'"
-    say "Remove from your bag ℹ️ 'I sold 2 BTC for 20000 $'"
-    say "Check out your bags ℹ️ 'How big are my bags?'"
+    say "Just tell me 💬 when you buy or sell an assset and I'll calculate your bags' value automatically 💰💰💰"
+    say "➕ Add to your bags by messaging me something like 'I bought 5 BTC for 10000 $'"
+    say "➖ I know it's not your thing but if you decided to sell just message me something like 'I sold 2 BTC for 20000 $'"
+    say "ℹ️ Check out your bags with 'How big are my bags?'"
   end
 end
 

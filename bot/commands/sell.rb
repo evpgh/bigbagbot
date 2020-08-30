@@ -21,7 +21,7 @@ module Commands
 	  transaction = Transaction.new
 	  transaction.quantity = matches[2].to_f
 	  asset = Asset.where(label: matches[3]).first
-	  currency = Currency.where(label: matches[6]).first&.id || Currency.where(label: 'USD').first
+	  currency = Currency.where(label: matches[6]).first || Currency.where(label: 'USD').first
 	  transaction.asset_id = asset.id
 	  transaction.action = 'buy'
 	  transaction.currency_id = currency.id
@@ -34,10 +34,10 @@ module Commands
 	  	Cryptocompare::Price.find(asset, currency)[asset.label][currency.label]
 	  end
  
-	  transaction.user_id = User.where(fb_id: get_user_info[:id]).first.id
+	  transaction.user_id = User.find_or_create(fb_id: get_user_info[:id]).id
 	  transaction.save
 	  message.typing_off
-		"So you sold #{transaction.quantity} #{transaction.asset.label} for #{transaction.quantity*transaction.price.round(2)}?"
+		"So you sold #{transaction.quantity} #{transaction.asset.label} for #{transaction.quantity*transaction.price.round(2)}$?"
 	end
 
 	def confirm

@@ -9,7 +9,7 @@ env = Dotenv.load(config)
 
 db = Sequel.connect(env['DATABASE_URL'] || ENV['DATABASE_URL'], max_connections: 10)
 
-db.drop_table :users
+db.drop_table :users if db.table_exists?(:users)
 db.create_table :users do
 	primary_key :id
 	String :first_name
@@ -19,7 +19,8 @@ db.run <<-SQL
 ALTER TABLE users
 ALTER COLUMN id TYPE bigint
 SQL
-db.drop_table :transactions
+
+db.drop_table :transactions if db.table_exists?(:transactions)
 db.create_table :transactions do
 	primary_key :id
 	String :action
@@ -29,7 +30,8 @@ db.create_table :transactions do
 	foreign_key :user_id
 	foreign_key :asset_id
 end
-db.drop_table :bags
+
+db.drop_table :bags if db.table_exists?(:bags)
 db.create_table :bags do
 	primary_key :id
 	foreign_key :user_id
@@ -38,14 +40,13 @@ db.create_table :bags do
 	Float :avg_price, default: 0
 end
 
-db.drop_table :assets
+db.drop_table :assets if db.table_exists?(:assets)
 db.create_table :assets do
 	primary_key :id
 	String :label, unique: true
 end
-db[:assets].insert({label: 'BTC'})
 
-db.drop_table :currencies
+db.drop_table :currencies if db.table_exists?(:currencies)
 db.create_table :currencies do
 	primary_key :id
 	String :label, unique: true

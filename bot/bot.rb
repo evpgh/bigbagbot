@@ -85,7 +85,7 @@ Rubotnik.route :postback do
   bind 'START' do
     say "Hello there! 🤖 \n I'm your crypto accounting assistant. 👔"
     say "I don't expose you to any risk by asking for access to your exchanges 🤓"
-    say "Just tell me 💬 when you buy or sell an assset and I'll calculate your bags' value automatically 💰💰💰"
+    say "Just tell me 💬 when you buy or sell an asset and I'll calculate your bags' value automatically 💰💰💰"
     say "➕ Add to your bags by messaging me something like 'I bought 5 BTC for 10000 $'"
     say "➖ I know it's not your thing but if you decided to sell just message me something like 'I sold 2 BTC for 20000 $'"
     say "ℹ️ Check out your bags with 'How big are my bags?'"

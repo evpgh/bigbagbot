@@ -24,6 +24,7 @@ GEM
     mustermann (1.1.1)
       ruby2_keywords (~> 0.0.1)
     nio4r (2.5.2)
+    pg (1.2.3)
     puma (4.3.5)
       nio4r (~> 2.0)
     rack (2.2.3)
@@ -43,7 +44,6 @@ GEM
       rack (~> 2.0)
       rack-protection (= 2.0.8.1)
       tilt (~> 2.0)
-    sqlite3 (1.4.2)
     thor (1.0.1)
     tilt (2.0.10)
 
@@ -54,9 +54,9 @@ DEPENDENCIES
   byebug
   cryptocompare
   logger
+  pg
   rubotnik
   sequel
-  sqlite3
 
 BUNDLED WITH
    2.1.4

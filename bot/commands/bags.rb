@@ -2,9 +2,17 @@ require 'byebug'
 
 module Commands
 	def get_all_bags
-		bags = User.where(id: get_user_info[:id]).first&.bags
+		user = User.where(id: get_user_info[:id]).first
+		if user.nil?
+			say "Your bags are empty. Have you bought some crypto recently?" 
+			return
+		end
+		bags = user.bags
 		# add all bags pie chart
-		say "Your bags are empty. Have you bought some crypto recently?" if bags.empty?
+		if bags.empty?
+			say "Your bags are empty. Have you bought some crypto recently?"
+			return
+		end
 
 		bags.each do |bag|
 			message.typing_on

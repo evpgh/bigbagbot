@@ -28,7 +28,7 @@ module Commands
 	  transaction.currency_id = currency.id
 	  sum = matches[5].to_f
 	  transaction.price = if matches[4] == 'for'
-	    sum / transaction.quantity.to_f
+	    (sum / transaction.quantity).round(2)
 	  elsif matches[4] == 'at'
 	    sum
 	  else
@@ -38,7 +38,7 @@ module Commands
 	  transaction.user_id = User.find_or_create(fb_id: get_user_info[:id]).id
 	  transaction.save
 	  message.typing_off
-		"So you acquired #{transaction.quantity} #{transaction.asset.label} for #{transaction.quantity*transaction.price.round}$?"
+		"So you acquired #{transaction.quantity} #{transaction.asset.label} at #{transaction.price.round}$?"
 	end
 
 	def confirm

@@ -20,7 +20,7 @@ Rubotnik.set_profile(
 ####################### HANDLE INCOMING MESSAGES ##############################
 
 Rubotnik.route :message do
-  bind 'START', 'get started', 'help', 'wtf', 'start', 'Start', 'Get Started', 'Hello', 'Hi', 'hey', "what's up" do
+  bind 'START', 'get started', 'help', 'wtf', 'start', 'Start', 'Get Started', 'Hello', 'Hi', 'hey', "what's up", "Hey" do
     say "🤖 Hello there!"
     say "👔 I'm your crypto 💰 accounting assistant."
     say "🤓 I don't expose you to any risk by asking for access to your exchanges."

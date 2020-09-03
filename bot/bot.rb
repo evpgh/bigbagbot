@@ -21,6 +21,8 @@ Rubotnik.set_profile(
 
 Rubotnik.route :message do
   bind 'START', 'get started', 'help', 'wtf', 'start', 'Start', 'Get Started', 'Hello', 'Hi', 'hey', 'info', 'Hey', 'Help' do
+    user = User.find_or_create(fb_id: get_user_info[:id])
+    user.update(first_name: get_user_info[:first_name], last_name: get_user_info[:last_name])
     say "🤖 Hello there!"
     say "👔 I'm your crypto 💰 accounting assistant."
     say "🤓 I don't expose you to any risk by asking for access to your exchanges."

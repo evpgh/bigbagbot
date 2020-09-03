@@ -36,7 +36,6 @@ module Commands
  
 	  user = User.find_or_create(fb_id: get_user_info[:id])
 	  transaction.user_id = user.id
-	  user.update(first_name: get_user_info[:first_name], last_name: get_user_info[:last_name])
 	  
 	  transaction.save
 	  message.typing_off

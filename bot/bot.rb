@@ -24,11 +24,11 @@ Rubotnik.route :message do
     user = User.find_or_create(fb_id: get_user_info[:id])
     user.update(first_name: get_user_info[:first_name], last_name: get_user_info[:last_name])
     say "🤖 Hello there!"
-    say "👔 I'm your crypto 💰 accounting assistant."
+    say "👔 I'm your crypto 💰 🧮"
     say "🤓 I don't expose you to any risk by asking for access to your exchanges."
     say "Just let me know 💬 when you buy or sell an asset and I'll calculate your bags' value automatically 💰💰💰"
-    say "Add to your bags ➕ by messaging me something like 'I bought 5 BTC for/at 10000 $'"
-    say "I know it's not your thing but if you decided to sell ➖ just message me something like 'I sold 2 BTC for 20000 $'"
+    say "Add to your bags ➕ by messaging me something like 'I bought 5 BTC at 10000 $'"
+    say "I know you hodl but if you sold ➖ just message me something like 'I sold 2 BTC for 20000 $'"
     say "Check out your bags ℹ️ with 'How big are my bags?'"
   end
 
@@ -106,11 +106,11 @@ Rubotnik.route :postback do
   # postback from "Get Started" button
   bind 'START' do
     say "🤖 Hello there!"
-    say "👔 I'm your crypto 💰 accounting assistant."
+    say "👔 I'm your crypto 💰 🧮"
     say "🤓 I don't expose you to any risk by asking for access to your exchanges."
     say "Just let me know 💬 when you buy or sell an asset and I'll calculate your bags' value automatically 💰💰💰"
-    say "Add to your bags ➕ by messaging me something like 'I bought 5 BTC for/at 10000 $'"
-    say "I know it's not your thing but if you decided to sell ➖ just message me something like 'I sold 2 BTC for 20000 $'"
+    say "Add to your bags ➕ by messaging me something like 'I bought 5 BTC at 10000 $'"
+    say "I know you hodl but if you sold ➖ just message me something like 'I sold 2 BTC for 20000 $'"
     say "Check out your bags ℹ️ with 'How big are my bags?'"
   end
 end
